@@ -82,24 +82,45 @@ class HelloAppTest {
     }
 
     /**
-     * Test: Verify main method only uses the first argument when multiple are provided
+     * Test: Verify main method concatenates multiple arguments with commas
      * Arrange: Provide multiple arguments: "John", "Doe", "Jr"
      * Act: Call main method
-     * Assert: Output should only use first argument "John"
+     * Assert: Output should concatenate all arguments: "Hello, John, Doe, Jr!"
      */
     @Test
-    @DisplayName("Should use only first argument when multiple arguments provided")
+    @DisplayName("Should concatenate multiple arguments with commas")
     void testMainWithMultipleArguments() {
         // Arrange
         String[] args = {"John", "Doe", "Jr"};
-        String expectedOutput = "Hello, John!";
+        String expectedOutput = "Hello, John, Doe, Jr!";
 
         // Act
         HelloApp.main(args);
 
         // Assert
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim(),
-                "Output should only use the first argument from command-line");
+                "Output should concatenate all arguments with commas");
+    }
+
+    /**
+     * Test: Verify main method concatenates two arguments correctly
+     * Arrange: Provide two arguments: "John", "Doe"
+     * Act: Call main method
+     * Assert: Output should be "Hello, John, Doe!"
+     */
+    @Test
+    @DisplayName("Should concatenate two arguments with comma")
+    void testMainWithTwoArguments() {
+        // Arrange
+        String[] args = {"John", "Doe"};
+        String expectedOutput = "Hello, John, Doe!";
+
+        // Act
+        HelloApp.main(args);
+
+        // Assert
+        assertEquals(expectedOutput, outputStreamCaptor.toString().trim(),
+                "Output should concatenate two arguments with a comma");
     }
 
     /**
@@ -187,24 +208,24 @@ class HelloAppTest {
     }
 
     /**
-     * Test: Verify main method defaults to "world" when no arguments provided
+     * Test: Verify main method handles no arguments (empty name)
      * Arrange: Provide empty args array
      * Act: Call main method
-     * Assert: Output should be "Hello, world!"
+     * Assert: Output should be "Hello, !" (empty name)
      */
     @Test
-    @DisplayName("Should default to 'world' when no arguments provided")
+    @DisplayName("Should output empty name when no arguments provided")
     void testMainWithNoArguments() {
         // Arrange
         String[] args = {};
-        String expectedOutput = "Hello, world!";
+        String expectedOutput = "Hello, !";
 
         // Act
         HelloApp.main(args);
 
         // Assert
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim(),
-                "Output should default to 'Hello, world!' when no arguments are provided");
+                "Output should be 'Hello, !' when no arguments are provided");
     }
 
     /**
