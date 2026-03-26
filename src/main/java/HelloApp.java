@@ -33,12 +33,14 @@
 public class HelloApp {
     public static void main(String[] args) {
         StringBuilder nameBuilder = new StringBuilder();
+        boolean first = true;
         
-        for (int i = 0; i < args.length; i++) {
-            nameBuilder.append(args[i]);
-            if (i < args.length - 1) {
+        for (String name : args) {
+            if (!first) {
                 nameBuilder.append(", ");
             }
+            nameBuilder.append(name);
+            first = false;
         }
         // Get the name from command-line argument, default to "world" if none provided
         String name = nameBuilder.toString();
