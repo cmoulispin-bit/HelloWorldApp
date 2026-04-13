@@ -32,18 +32,17 @@
 
 public class HelloApp {
     public static void main(String[] args) {
+        String name;
         StringBuilder nameBuilder = new StringBuilder();
-        boolean first = true;
-        
-        for (String name : args) {
-            if (!first) {
-                nameBuilder.append(", ");
-            }
-            nameBuilder.append(name);
-            first = false;
+        for (String n: args){
+            nameBuilder.append(n).append(", ");
         }
-        // Get the name from command-line argument, default to "world" if none provided
-        String name = nameBuilder.toString();
-        System.out.println("Hello, " + name + "!");
+        if (nameBuilder.length() > 0){
+           name  = nameBuilder.substring(0, nameBuilder.length() - 2);
+        }
+        else{
+            name = "world";
+        }
+        System.out.println("hello, " + name + "!");
     }
 }
