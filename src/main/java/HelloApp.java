@@ -32,17 +32,13 @@
 
 public class HelloApp {
     public static void main(String[] args) {
-        String name;
-        StringBuilder nameBuilder = new StringBuilder();
-        for (String n: args){
-            nameBuilder.append(n).append(", ");
-        }
-        if (nameBuilder.length() > 0){
-           name  = nameBuilder.substring(0, nameBuilder.length() - 2);
+        String names;
+        if (args.length > 0){
+           names  = String.join(", ", args);
         }
         else{
-            name = "world";
+            names = "world";
         }
-        System.out.println("hello, " + name + "!");
+        System.out.println("hello, " + names + "!");
     }
 }
